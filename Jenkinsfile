@@ -12,8 +12,19 @@ pipeline {
       }
     }
 
+    stage('Test') {
+      steps {
+        script {
+          docker.image("${registry}:${env.BUILD_ID}").inside{
+
+            c-> sh 'scripts/test.sh'}
+          }
+
+        }
+      }
+
+    }
+    environment {
+      registry = 'deriterath/practice_task'
+    }
   }
-  environment {
-    registry = 'deriterath/practice_task'
-  }
-}
