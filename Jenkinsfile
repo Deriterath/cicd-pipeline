@@ -5,16 +5,15 @@ pipeline {
       steps {
         script {
           checkout scm
-          def customImage = docker.build("${registry}:${env.BUILD_ID}").inside{
 
-            c-> sh 'scripts/build.sh'}
-          }
-
+          def customImage = docker.build("${registry}:${env.BUILD_ID}")
         }
-      }
 
+      }
     }
-    environment {
-      registry = 'deriterath/practice_task'
-    }
+
   }
+  environment {
+    registry = 'deriterath/practice_task'
+  }
+}
