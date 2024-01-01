@@ -1,12 +1,23 @@
 pipeline {
   agent any
   stages {
-    stage('Build') {
+    stage('Initialize') {
       steps {
         script {
           checkout scm
 
-          def customImage = docker.build("${registry}:${env.BUILD_ID}").inside{
+          def customImage = docker.build("${registry}:${env.BUILD_ID}")
+
+
+        }
+
+      }
+    }
+
+    stage('Build') {
+      steps {
+        script {
+          docker.build("${registry}:${env.BUILD_ID}").inside{
 
             c-> sh 'scripts/build.sh'}
           }
