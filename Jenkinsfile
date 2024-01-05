@@ -35,7 +35,7 @@ pipeline {
       }
       steps {
         script {
-          docker.withRegistry( 'https://registry.hub.docker.com', docker_hub_creds_id ) {
+          docker.withRegistry( 'https://registry.hub.docker.com', deriterath/practice_task:test ) {
             dockerImage.push()
           }
         }
