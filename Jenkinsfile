@@ -14,7 +14,11 @@ pipeline {
         sh 'bash ./scripts/test.sh'
       }
     }
+
     stage('docker') {
+      environment {
+        registry = 'deriterath/practice_task'
+      }
       steps {
         script {
           checkout scm
@@ -24,6 +28,7 @@ pipeline {
 
       }
     }
+
   }
   tools {
     nodejs 'nodejs'
