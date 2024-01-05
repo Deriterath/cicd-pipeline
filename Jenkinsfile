@@ -33,7 +33,4 @@ pipeline {
   tools {
     nodejs 'nodejs'
   }
-  environment {
-    registry = 'deriterath/practice_task'
-  }
 }
