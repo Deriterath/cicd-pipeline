@@ -28,15 +28,21 @@ pipeline {
 
       }
     }
+
     stage('deploy') {
+      environment {
+        registry = 'deriterath/practice_task'
+      }
       steps {
         script {
           docker.withRegistry( 'https://registry.hub.docker.com', dockerhub_id ) {
-          dockerImage.push()
+            dockerImage.push()
           }
         }
+
       }
     }
+
   }
   tools {
     nodejs 'nodejs'
