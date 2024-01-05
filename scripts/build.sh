@@ -1,3 +1,2 @@
 #!/bin/bash
-apt update
-apt install npm -y
+install npm -y
