@@ -1,36 +1,16 @@
 pipeline {
-  agent any
+  agent { label "linux"}
   stages {
-    stage('Initialize') {
+    stage('build') {
       steps {
-        script {
-          checkout scm
-
-          def customImage = docker.build("${registry}:${env.BUILD_ID}")
-        }
-
+            sh 'chmod +x /scripts/build.sh'
+            sh 'bash /scripts/build.sh'
       }
     }
-
-    stage('Build') {
-      steps {
-        script {
-          docker.image("${registry}:${env.BUILD_ID}").inside{
-            sh 'chmod +x /scripts/build.sh'
-            sh 'bash /scripts/build.sh'}
-          }
-
-        }
-      }
-
       stage('Test') {
         steps {
-          script {
-            docker.image("${registry}:${env.BUILD_ID}").inside{
-
-              sh 'bash /scripts/test.sh'}
-            }
-
+          sh 'chmod +x /scripts/test.sh'
+          sh 'bash /scripts/test.sh'
           }
         }
 
