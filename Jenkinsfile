@@ -1,21 +1,24 @@
 pipeline {
-  agent { label "linux"}
+  agent {
+    label 'linux'
+  }
   stages {
     stage('build') {
       steps {
-            sh 'chmod +x /scripts/build.sh'
-            sh 'bash /scripts/build.sh'
+        sh 'chmod +x /scripts/build.sh'
+        sh 'bash /scripts/build.sh'
       }
     }
-      stage('Test') {
-        steps {
-          sh 'chmod +x /scripts/test.sh'
-          sh 'bash /scripts/test.sh'
-          }
-        }
 
-      }
-      environment {
-        registry = 'deriterath/practice_task'
+    stage('Test') {
+      steps {
+        sh 'chmod +x /scripts/test.sh'
+        sh 'bash /scripts/test.sh'
       }
     }
+
+  }
+  environment {
+    registry = 'deriterath/practice_task'
+  }
+}
