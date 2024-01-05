@@ -40,8 +40,10 @@ pipeline {
             //docker.image("${registry}:latest").push('latest')
           }
         }
+
       }
     }
+
   }
   tools {
     nodejs 'nodejs'
