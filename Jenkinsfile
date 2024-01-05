@@ -16,7 +16,4 @@ pipeline {
     }
 
   }
-  environment {
-    registry = 'deriterath/practice_task'
-  }
 }
